@@ -1,2 +1,0 @@
-# archimax
-The archimax installer
