@@ -1,0 +1,6 @@
+NAME="Xedaku Linux"
+ID=xedaku
+VERSION_ID=3.0
+PRETTY_NAME="Xedaku Linux v3.0"
+HOME_URL="https://xedakulinux.github.io/"
+BUG_REPORT_URL="https://github.com/XedakuLinux/bug-reports/"

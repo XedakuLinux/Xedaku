@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Xedaku Linux setup script v1.0
+# CopyLeft Xedaku 2023
+# All rights reserved
+
+# Check if running as root
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run this script as root."
+  exit 1
+fi
+
+# Prompt for network device
+read -p "Enter the network device (e.g., eth0, wlan0): " NETWORK_DEVICE
+
+# Create /etc/network/ directory if it doesn't exist
+INTERFACES_DIR="/etc/network/"
+mkdir -p "$INTERFACES_DIR"
+
+# Write network configuration to interfaces file
+INTERFACES_FILE="$INTERFACES_DIR/interfaces"
+cat > "$INTERFACES_FILE" <<EOF
+auto $NETWORK_DEVICE
+
+iface $NETWORK_DEVICE inet dhcp
+EOF
+
+# Update repositories
+apk update
+
+# Set hostname
+read -p "Enter the hostname: " HOSTNAME
+echo "$HOSTNAME" > /etc/hostname
+
+# Inform user about completion
+echo "Setup complete. Please reboot the system for changes to take effect."
+
